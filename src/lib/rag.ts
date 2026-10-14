@@ -1,4 +1,4 @@
-import { gemini, MODEL } from "@/lib/gemini";
+import { gemini, generate, MODEL } from "@/lib/gemini";
 import type { Page } from "@/lib/crawl";
 
 export const EMBED_MODEL = process.env.GEMINI_EMBED_MODEL ?? "gemini-embedding-001";
@@ -105,8 +105,7 @@ export async function answer(bot: Bot, history: { role: "user" | "assistant"; te
     context || "(no relevant excerpts found)",
   ].join("\n");
 
-  const res = await gemini().models.generateContent({
-    model: MODEL,
+  const res = await generate({
     contents: history.slice(-8).map((m) => ({ role: m.role === "user" ? "user" : "model", parts: [{ text: m.text }] })),
     config: { systemInstruction: system, temperature: 0.1, maxOutputTokens: 500 },
   });
