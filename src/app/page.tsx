@@ -1,0 +1,52 @@
+import { BuildForm } from "@/components/BuildForm";
+import { Footer, Header } from "@/components/Chrome";
+import { APP } from "@/app.config";
+
+export default function Page() {
+  return (
+    <>
+      <Header app={APP.name} repo={APP.repo} />
+      <main className="flex-1">
+        <section className="grid-bg border-b border-line">
+          <div className="mx-auto max-w-3xl px-4 pt-14 pb-16 text-center sm:px-6 sm:pt-20">
+            <p className="label inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Live demo · RAG with citations
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
+              Your website,{" "}
+              <span className="font-serif font-normal italic text-accent-ink">answering questions.</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
+              Paste a URL. The bot reads your pages, answers visitors from them alone, cites the page it used, and says so
+              when the answer isn&apos;t there. Embed it with one script tag.
+            </p>
+            <div className="mt-8 text-left">
+              <BuildForm />
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <p className="label">How it works</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight">Retrieval first, then a model that&apos;s only allowed to quote</h2>
+          <ol className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Crawl", "Up to 15 same-site pages, respecting robots.txt, with private and internal addresses blocked so it can't be aimed at a server's own network."],
+              ["Chunk and embed", "Pages split into passages under their headings, embedded with Gemini embeddings and stored with the bot."],
+              ["Hybrid search", "Each question is matched by meaning (cosine similarity) plus exact words, so prices, names and SKUs still hit."],
+              ["Answer with proof", "The model may only use the retrieved passages and must cite them. Citations to passages that don't exist are stripped in code."],
+            ].map(([t, d], i) => (
+              <li key={t} className="bg-panel p-5">
+                <p className="font-mono text-xs text-accent-ink">0{i + 1}</p>
+                <p className="mt-2 font-medium">{t}</p>
+                <p className="mt-1.5 text-sm text-muted">{d}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </main>
+      <Footer note="Demo with a per-visitor limit · bots are deleted after 7 days" />
+    </>
+  );
+}

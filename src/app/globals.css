@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f6f3ec;
+  --panel: #ffffff;
+  --ink: #17140f;
+  --muted: #6d665b;
+  --faint: #9a9284;
+  --line: #e3ddd1;
+  --accent: #f97316;
+  --accent-ink: #c2410c;
+  --accent-soft: #fff1e6;
+  --console: #1b1814;
+  --console-line: #2e2a24;
+  --console-text: #e9e3d8;
+  --console-muted: #9a9284;
+  --good: #15803d;
+  --good-soft: #e8f5ec;
+  --bad: #b91c1c;
+  --bad-soft: #fdecec;
+  --warn: #a16207;
+  --warn-soft: #fdf6e3;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-console: var(--console);
+  --color-console-line: var(--console-line);
+  --color-console-text: var(--console-text);
+  --color-console-muted: var(--console-muted);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* faint engineering grid behind the page */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(23, 20, 15, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 20, 15, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.console-scroll::-webkit-scrollbar { width: 8px; }
+.console-scroll::-webkit-scrollbar-thumb { background: var(--console-line); border-radius: 8px; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.28s ease-out both; }
+
+@keyframes blink { 50% { opacity: 0.25; } }
+.blink { animation: blink 1s steps(2) infinite; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
