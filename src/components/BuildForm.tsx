@@ -15,7 +15,6 @@ export function BuildForm() {
 
   useEffect(() => {
     if (!busy) return;
-    setStage(0);
     // The server does all of this in one request; the stages just show roughly where it is.
     const t = setInterval(() => setStage((s) => Math.min(s + 1, STAGES.length - 1)), 2600);
     return () => clearInterval(t);
@@ -24,6 +23,7 @@ export function BuildForm() {
   async function build(target: string) {
     if (!target.trim() || busy) return;
     setUrl(target);
+    setStage(0);
     setBusy(true);
     setError(null);
     try {
