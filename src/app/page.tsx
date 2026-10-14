@@ -1,4 +1,5 @@
 import { BuildForm } from "@/components/BuildForm";
+import { Integrate } from "@/components/Integrate";
 import { Footer, Header } from "@/components/Chrome";
 import { APP } from "@/app.config";
 
@@ -45,6 +46,20 @@ export default function Page() {
             ))}
           </ol>
         </section>
+        <Integrate
+          c={{
+            title: "Add it to your website in two minutes",
+            intro: "Build your bot above and paste one line of code. It answers visitors from your own pages, links to the page it used, and says so honestly when the answer isn't there.",
+            options: [
+              { name: "Paste one script tag", tag: "Works today", detail: "Copy the snippet from your bot's page and paste it before </body>. It works on WordPress, Shopify, Webflow, Wix, Squarespace and plain HTML. A chat button appears in the corner." },
+              { name: "Teach it more than your website", detail: "Add PDFs, help-centre articles, product catalogues or internal FAQs, and keep it in sync by re-reading your site on a schedule." },
+              { name: "Hand over to a person", detail: "When it can't answer, it can collect the visitor's email or open a WhatsApp chat, so no question is lost." },
+              { name: "Your branding and insights", detail: "Your colours, name and greeting, plus a report of the questions people ask most and the ones it couldn't answer." },
+            ],
+            needs: ["Your website address", "Any documents it should know beyond the site", "Where unanswered questions should go (email, WhatsApp or helpdesk)"],
+            timeline: "The basic widget is instant. A custom version with your documents and handover takes about a week.",
+          }}
+        />
       </main>
       <Footer note="Demo with a per-visitor limit · bots are deleted after 7 days" />
     </>
